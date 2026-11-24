@@ -1,0 +1,32 @@
+/* Only this detail page: the shared cinematic design stays unchanged. */
+.experience-section{padding-top:165px;padding-bottom:110px;max-width:1340px;min-height:100svh}
+.experience-back{color:#bcb0a2;font-size:12px}
+.experience-intro{margin-top:55px;margin-bottom:65px}
+.experience-intro .section-label{margin-bottom:25px}
+.experience-intro h1{font-size:clamp(36px,4.3vw,62px);line-height:1.4;letter-spacing:-1.5px}
+.experience-timeline{list-style:none;padding:0;margin:0;border-top:1px solid #ffffff2b}
+.experience-entry{display:grid;grid-template-columns:190px minmax(0,1fr);gap:36px;padding:43px 0 46px;border-bottom:1px solid #ffffff24}
+.experience-date{display:flex;flex-direction:column;gap:20px;font-size:12px;color:#bcb0a2;letter-spacing:.5px;padding-top:7px;font-variant-numeric:tabular-nums}
+.experience-index{font-size:11px;color:var(--orange);letter-spacing:3px}
+.experience-content h2{font-size:clamp(23px,2.3vw,32px);line-height:1.45;letter-spacing:0}
+.experience-organization{font-size:12px;color:#ad9d8d;margin-top:7px;line-height:1.7}
+.experience-role{font-size:15px;color:var(--orange);line-height:1.85;margin-top:15px}
+.experience-role span{color:#d3b49c}
+.experience-duties{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:16px}
+.experience-duties li{position:relative;padding-left:17px;color:#c9c0b5;font-size:14px;line-height:2.05;overflow-wrap:anywhere}
+.experience-duties li:before{content:'';position:absolute;left:0;top:.85em;width:4px;height:4px;background:var(--orange);border-radius:50%;opacity:.8}
+.experience-duties strong{color:#f0e8dc;font-weight:500}
+.experience-contact{margin-top:40px}
+.experience-page .layered-backdrop .layered-figure{opacity:.09}
+@media(max-width:720px){
+ .experience-section{padding-top:125px;padding-bottom:75px}
+ .experience-intro{margin-top:38px;margin-bottom:36px}
+ .experience-intro h1{font-size:34px}
+ .experience-intro .section-label{font-size:9px;letter-spacing:1.4px}
+ .experience-entry{grid-template-columns:1fr;gap:18px;padding:30px 0 34px}
+ .experience-date{flex-direction:row;align-items:center;gap:20px;padding:0;font-size:11px}
+ .experience-content h2{font-size:24px}
+ .experience-role{font-size:14px;margin-top:12px}
+ .experience-duties{margin-top:18px;gap:13px}
+ .experience-duties li{font-size:13px;line-height:2}
+}

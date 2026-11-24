@@ -1,0 +1,5 @@
+node_modules
+.next
+.git
+.env*
+public/portfolio/intro/opening.mp4

@@ -1,0 +1,156 @@
+/* Colors sampled from the supplied reference; CSS light fields, no bitmap. */
+:root{
+ --scene-base:#0a0506;
+ --scene-background:
+  radial-gradient(ellipse 38% 7% at 54% 87%,#e0651d9c 0%,#b546204a 48%,transparent 100%),
+  radial-gradient(ellipse 64% 16% at 54% 93%,#9e3c1b72 0%,transparent 74%),
+  radial-gradient(ellipse 32% 20% at 0% 85%,#2b0f43cc 0%,transparent 80%),
+  radial-gradient(ellipse 29% 22% at 100% 84%,#3c144db3 0%,transparent 85%),
+  radial-gradient(ellipse 69% 91% at 108% -7%,#ac4a1b 0%,#68280f 35%,transparent 77%),
+  radial-gradient(ellipse 58% 85% at 57% 67%,#4f2210 0%,#2e140d 43%,transparent 83%),
+  linear-gradient(120deg,#0a0506 13%,#170b09 66%,#130811);
+}
+body{background-color:var(--scene-base);background-image:var(--scene-background);background-attachment:fixed}
+.layered-backdrop{background:var(--scene-background);background-color:var(--scene-base);--scene-glow:transparent;isolation:isolate}
+.layered-environment{position:absolute;inset:-8%;will-change:transform;pointer-events:none}
+.layered-scene{position:absolute;inset:0;will-change:opacity}
+.layered-figure{position:absolute;left:75%;top:55%;width:46vw;height:79svh;transform:translate(-50%,-50%);transform-origin:50% 55%;will-change:transform}
+.figure-hero{left:70%;top:54%;width:70vw;height:86svh}
+.figure-about{width:52vw;height:80svh}
+.figure-person{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;z-index:2;filter:drop-shadow(0 22px 35px #0008)}
+.figure-contact .figure-person{transform:scaleX(-1)}
+.figure-person,.original-profile-card .pc-avatar-content .avatar{
+ -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 3%,#000 84%,transparent 100%),linear-gradient(to right,transparent 0%,#000 4%,#000 96%,transparent 100%);
+ -webkit-mask-composite:source-in;
+ mask-image:linear-gradient(to bottom,transparent 0%,#000 3%,#000 84%,transparent 100%),linear-gradient(to right,transparent 0%,#000 4%,#000 96%,transparent 100%);
+ mask-composite:intersect;
+}
+/* The seated pose has complete boots: feather the canvas, keep the footwear. */
+.figure-about .figure-person{
+ -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 3%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0%,#000 3%,#000 97%,transparent 100%);
+ mask-image:linear-gradient(to bottom,transparent 0%,#000 3%,#000 96%,transparent 100%),linear-gradient(to right,transparent 0%,#000 3%,#000 97%,transparent 100%);
+}
+.layered-vignette{position:absolute;inset:0;background:linear-gradient(90deg,#0a050633,transparent 48%);pointer-events:none}
+.geometry-anchor{position:absolute;width:var(--geometry-size);height:var(--geometry-size);animation:geometry-travel var(--geometry-duration) ease-in-out infinite alternate;animation-delay:var(--geometry-delay);will-change:transform;opacity:.55}
+.floating-polyhedron{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 6px #e875272b);animation:geometry-turn calc(var(--geometry-duration)*2) linear infinite;animation-delay:var(--geometry-delay);transform-origin:center}
+.geometry-depth-1{opacity:.26;filter:blur(.5px)}
+.geometry-depth-2{opacity:.16;filter:blur(1px)}
+.geometry-orbit{position:absolute;border:1px solid #d6894a20;border-radius:50%;width:540px;height:540px;left:58%;top:20%;transform:rotateX(65deg) rotate(-25deg);animation:orbit-breathe 22s ease-in-out infinite alternate}
+.orbit-front{width:700px;height:700px;left:52%;top:8%;border-color:#9c8ada12;animation-delay:-9s}
+.layered-spark{position:absolute;width:2px;height:2px;background:#ffd5b7;border-radius:50%;box-shadow:0 0 10px #fb914d44;animation:layer-spark 11s ease-in-out infinite alternate;opacity:.3}
+@keyframes geometry-travel{from{transform:translate3d(-20px,22px,0) scale(.84)}to{transform:translate3d(35px,-45px,0) scale(1.16)}}
+@keyframes geometry-turn{to{transform:rotate(360deg)}}
+@keyframes orbit-breathe{to{transform:rotateX(58deg) rotate(30deg) scale(1.12)}}
+@keyframes layer-spark{to{transform:translate3d(15px,calc(-1 * var(--spark-distance)),0);opacity:.65}}
+
+/* Keep copy outside the character's principal silhouette. */
+.cinematic-home .hero-content{width:61%;padding-top:31svh}
+.cinematic-home .hero h1{font-size:clamp(36px,4.15vw,62px)}
+.cinematic-home .hero{height:125svh;min-height:850px}
+.cinematic-home>.section{min-height:115svh}
+.cinematic-home .capabilities{max-width:47%}
+.cinematic-home .project-grid{max-width:48%}
+.cinematic-home .contact-grid,.contact-section.standalone .contact-grid{width:46%;margin-left:0;margin-right:auto;gap:26px}
+.cinematic-home .contact-section>.section-label,.contact-section.standalone>.section-label{margin-left:0}
+.cinematic-home .contact-grid h2{font-size:clamp(30px,3.1vw,46px)}
+.cinematic-home .contact-list{background:#09070565}
+.contact-section.standalone .contact-list{background:#08080869}
+.contact-section.standalone{position:relative}
+.contact-section.standalone .layered-backdrop{z-index:-1}
+
+/* Standalone routes keep the same space instead of using baked image backgrounds. */
+.portrait-page .layered-backdrop .layered-figure{opacity:.18;filter:blur(2px)}
+.portrait-page .layered-backdrop .geometry-anchor{opacity:.22}
+.original-profile-card .pc-avatar-content .avatar{inset:8% 0 0;width:100%;height:92%;object-fit:contain;object-position:center bottom;transform:none;opacity:1}
+.original-profile-card .pc-inside{background:#111}
+.original-profile-card .pc-mini-avatar img{object-fit:cover;object-position:center 20%;scale:1.6}
+.gallery-page>.layered-backdrop{z-index:0;opacity:1}
+.gallery-page>.layered-backdrop .layered-figure{left:78%;opacity:.5}
+.gallery-page .gallery-portrait{display:none}
+
+@media(min-width:721px) and (max-height:700px){
+ .layered-figure{top:59%;height:70svh}
+ .figure-hero{top:56%;height:78svh;width:64vw}
+ .cinematic-home .hero-content{padding-top:27svh}
+}
+@media(min-width:721px) and (max-width:1050px){
+ .layered-figure{left:79%;width:44vw;height:72svh}
+ .figure-hero{left:74%;width:64vw;height:82svh}
+ .cinematic-home .hero-content{width:66%}
+ .cinematic-home .hero h1{font-size:40px}
+ .cinematic-home .contact-grid,.contact-section.standalone .contact-grid{width:49%}
+}
+@media(max-width:720px){
+ .layered-figure{left:50%;top:30svh;width:92vw;height:43svh}
+ .figure-hero{left:50%;top:30svh;width:100vw;height:45svh}
+ .figure-contact{top:32svh}
+ .layered-environment{inset:0}
+ .geometry-anchor{width:calc(var(--geometry-size)*.65);height:calc(var(--geometry-size)*.65);opacity:.3}
+ .geometry-orbit{width:360px;height:360px;left:15%;top:5%;opacity:.6}
+ .orbit-front{left:-25%;top:10%}
+ .layered-vignette{background:linear-gradient(0deg,#0a05062b 0%,#0a050633 38%,transparent 56%)}
+ .cinematic-home .hero{min-height:960px;height:125svh}
+ .cinematic-home .hero-content{width:100%;padding-top:57svh}
+ .cinematic-home .hero h1{font-size:clamp(28px,7.7vw,38px)}
+ .cinematic-home>.section{padding-top:57svh;min-height:130svh;padding-bottom:100px}
+ .cinematic-home .capabilities,.cinematic-home .project-grid{max-width:100%}
+ .cinematic-home .contact-grid,.contact-section.standalone .contact-grid{width:100%;margin:0}
+ .cinematic-home .contact-section>.section-label,.contact-section.standalone>.section-label{margin-left:0}
+ .cinematic-home .contact-section{min-height:145svh}
+ .cinematic-home .contact-grid h2{font-size:30px}
+ .contact-section.standalone{padding-top:57svh;min-height:145svh}
+ .portrait-page .layered-backdrop .layered-figure{opacity:.12}
+ .gallery-page>.layered-backdrop .layered-figure{left:55%;top:35svh;width:95vw}
+ .original-profile-card .pc-avatar-content .avatar{height:90%;inset:10% 0 0}
+}
+@media(prefers-reduced-motion:reduce){
+ .layered-backdrop *{animation:none!important;will-change:auto!important}
+ .layered-environment{transform:none!important}
+}
+
+/* Shared header alignment and consolidated contact details. */
+.brand{align-items:stretch}
+.brand>span:last-child{line-height:1.2}
+.brand-symbol{position:relative;display:block;flex:0 0 32px;width:32px;margin-right:12px;font-size:0;line-height:0;letter-spacing:normal}
+.brand-symbol svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.contact-primary{flex:1;min-width:0}
+.contact-copy{flex:none;background:transparent;color:var(--orange);font-size:21px;padding:8px;line-height:1}
+.contact-copy:hover{color:var(--text)}
+.contact-email>span:first-child{min-width:0}
+.contact-email strong{overflow-wrap:anywhere}
+@media(max-width:720px){.brand-symbol{flex-basis:27px;width:27px;margin-right:9px}.contact-email strong{font-size:clamp(16px,4.6vw,21px)!important;letter-spacing:0}}
+
+/* Work experience entry on the existing background cards. */
+.background-grid :is(.background-work-link,.background-resume-link){display:block;height:100%;padding:24px;transition:background .2s,border-color .2s;border:1px solid var(--line)}
+.background-grid :is(.background-work-card,.background-resume-card){padding:0;border:0}
+:is(.background-work-link,.background-resume-link) p{display:flex;align-items:center;justify-content:space-between;gap:12px}
+:is(.background-work-link,.background-resume-link) p>span:last-child{color:var(--orange)}
+:is(.background-work-link,.background-resume-link):hover{background:#ff6b1a0a;border-color:#ff6b1a77}
+
+/* Education facts supplied by the user. */
+.background-grid .education-school{color:var(--text);font-size:15px;line-height:1.7}
+.background-grid .education-major{margin-top:8px;line-height:1.8}
+.background-grid .education-period{margin-top:13px;color:#c79d7b;font-size:11px;letter-spacing:.7px;font-variant-numeric:tabular-nums}
+
+/* Current résumé projects; preserve full concept covers and the existing gallery. */
+.gallery-list{position:relative;z-index:1}
+.gallery-list-card img{object-fit:contain}
+.showcase-image img{object-fit:contain}
+.showcase-image:after{background:none}
+@media(max-width:720px){.gallery-filters{flex-wrap:wrap;justify-content:center}.gallery-bottom{flex-wrap:wrap}.gallery-list-mode{padding-top:270px}}
+
+/* Equal visual rows in list view; gallery uses these same five SVG covers. */
+.gallery-list{align-items:start;row-gap:42px}
+.gallery-list-card{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;align-self:stretch;min-width:0}
+.gallery-list-card img{display:block;width:100%;height:380px;max-height:none;object-fit:contain;flex-shrink:0}
+.gallery-list-card>span{align-items:center;min-height:20px;gap:12px}
+.gallery-list-card h2{min-height:3.4em}
+/* The original QR is rendered through a transparent orange SVG mask. */
+.contact-official-account{display:grid;grid-template-columns:minmax(0,1fr) 108px;align-items:center;gap:20px;padding:24px 0}
+.official-account-label{font-size:9px;line-height:1.8;letter-spacing:1.3px;color:#bca48d}
+.contact-official-account h3{font-size:19px;line-height:1.6;color:#eee3d6;margin-top:13px;font-weight:500}
+.official-account-hint{font-size:11px;line-height:1.9;color:#bdae9d;margin-top:9px}
+.official-account-code{margin:0;background:transparent;padding:0;border-radius:0;box-shadow:none}
+.official-account-qr-link{display:block;width:108px;height:108px}
+.official-account-code svg{display:block;width:100%;height:100%}
+@media(max-width:720px){.gallery-list-card img{height:320px;max-height:none}.gallery-list-card h2{min-height:0}.contact-official-account{grid-template-columns:minmax(0,1fr) 100px;gap:15px}.official-account-qr-link{width:100px;height:100px}.contact-official-account h3{font-size:17px}.official-account-label{font-size:8px;letter-spacing:.8px}}
